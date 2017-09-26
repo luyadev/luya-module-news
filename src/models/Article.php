@@ -188,6 +188,7 @@ class Article extends NgRestModel
     {
         $q = self::find()
             ->andWhere('timestamp_display_from <= :time', ['time' => time()])
+            ->andWhere(['is_deleted' => false])
             ->orderBy('timestamp_display_from DESC');
         
         if ($limit) {
