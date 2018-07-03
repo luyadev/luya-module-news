@@ -142,7 +142,7 @@ class DefaultController extends \luya\web\Controller
      * @param string $title
      * @return \yii\web\Response|string
      */
-    public function actionDetail($id, $title)
+    public function actionDetail($id, $title, $category = null)
     {
         $model = Article::findOne(['id' => $id, 'is_deleted' => false]);
         
