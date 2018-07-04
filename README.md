@@ -29,9 +29,6 @@ After installation via Composer include the module to your configuration file wi
     'news' => [
     	'class' => 'luya\news\frontend\Module',
     	'useAppViewPath' => false, // When enabled the views will be looked up in the @app/views folder, otherwise the views shipped with the module will be used.
-        'urlRules' => [
-            ['pattern' => 'news/<category>/<id:\d+>-<title>', 'route' => 'news/default/detail'], 
-        ],
     ],
     'newsadmin' => 'luya\news\admin\Module',
 ]
