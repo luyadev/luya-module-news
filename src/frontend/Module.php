@@ -42,6 +42,7 @@ final class Module extends \luya\base\Module
      * @var array
      */
     public $urlRules = [
+        ['pattern' => 'news/<category>/<id:\d+>-<title>', 'route' => 'news/default/detail'],
         ['pattern' => 'news/<id:\d+>/<title:[a-zA-Z0-9\-]+>/', 'route' => 'news/default/detail'],
     ];
 }
