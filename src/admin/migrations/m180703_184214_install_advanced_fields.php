@@ -13,8 +13,8 @@ class m180703_184214_install_advanced_fields extends Migration
     public function safeUp()
     {
         $this->addColumn('news_article', 'status', "ENUM('trash','published','pending','draft','auto-draft','inherit')");
-        $this->addColumn('news_article', 'alias', $this->text());
-        $this->addColumn('news_article', 'seo_title', $this->text());
+        $this->addColumn('news_article', 'alias', $this->string());
+        $this->addColumn('news_article', 'seo_title', $this->string());
         $this->addColumn('news_article', 'seo_keywords', $this->text());
         $this->addColumn('news_article', 'seo_description', $this->text());
     }
