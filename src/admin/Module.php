@@ -17,6 +17,11 @@ final class Module extends \luya\admin\base\Module
     ];
 
     /**
+     * @var bool switch use of markdown for news artcles
+     */
+    public $enableMarkdown = true;
+
+    /**
      * @inheritdoc
      */
     public function getMenu()
