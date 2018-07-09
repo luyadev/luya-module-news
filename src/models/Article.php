@@ -89,7 +89,7 @@ class Article extends NgRestModel
         return [
             [['title', 'text'], 'required'],
             [['title', 'text', 'image_list', 'file_list', 'teaser_text', 'alias'], 'string'],
-            [['id', 'cat_id', 'create_user_id', 'update_user_id', 'timestamp_create', 'timestamp_update', 'timestamp_display_from', 'timestamp_display_until'], 'integer'],
+            [['cat_id', 'create_user_id', 'update_user_id', 'timestamp_create', 'timestamp_update', 'timestamp_display_from', 'timestamp_display_until'], 'integer'],
             [['is_deleted', 'is_display_limit'], 'boolean'],
             [['image_id'], 'safe'],
         ];
@@ -192,7 +192,7 @@ class Article extends NgRestModel
         return [
             [['list'], ['id', 'cat_id', 'alias', 'title', 'timestamp_create', 'image_id']],
             // `create` has additional permission to provide `id` for cases when administrator neews to move articles from other blog-modules
-            [['create'], ['id', 'alias', 'cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until', 'image_id', 'image_list', 'file_list']],
+            [['create'], ['alias', 'cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until', 'image_id', 'image_list', 'file_list']],
             [['update'], ['alias', 'cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until', 'image_id', 'image_list', 'file_list']],
             [['delete'], true],
         ];
