@@ -51,7 +51,7 @@ class Cat extends NgRestModel
     {
         return [
             'title' => Module::t('cat_title'),
-            'alias' => Module::t('cat_alias'),
+            'slug' => Module::t('cat_slug'),
         ];
     }
 
@@ -62,7 +62,7 @@ class Cat extends NgRestModel
     {
         return [
             [['title'], 'required'],
-            [['alias'], 'string', 'min' => 3, 'max' => 128],
+            [['slug'], 'string', 'min' => 3, 'max' => 128],
         ];
     }
 
@@ -81,7 +81,7 @@ class Cat extends NgRestModel
     {
         return [
             'title' => 'text',
-            'alias' => 'text',
+            'slug' => 'text',
         ];
     }
 
@@ -91,7 +91,7 @@ class Cat extends NgRestModel
     public function ngRestScopes()
     {
         return [
-            [['list', 'create', 'update'], ['title', 'alias']],
+            [['list', 'create', 'update'], ['title', 'slug']],
             [['delete'], true],
         ];
     }

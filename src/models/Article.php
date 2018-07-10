@@ -15,7 +15,7 @@ use luya\admin\traits\TagsTrait;
  * This is the model class for table "news_article".
  *
  * @property integer $id
- * @property string $alias
+ * @property string $slug
  * @property string $status
  * @property string $title
  * @property string $text
@@ -88,7 +88,7 @@ class Article extends NgRestModel
     {
         return [
             [['title', 'text'], 'required'],
-            [['title', 'text', 'image_list', 'file_list', 'teaser_text', 'alias'], 'string'],
+            [['title', 'text', 'image_list', 'file_list', 'teaser_text', 'slug'], 'string'],
             [['cat_id', 'create_user_id', 'update_user_id', 'timestamp_create', 'timestamp_update', 'timestamp_display_from', 'timestamp_display_until'], 'integer'],
             [['is_deleted', 'is_display_limit'], 'boolean'],
             [['image_id'], 'safe'],
@@ -103,7 +103,7 @@ class Article extends NgRestModel
         return [
             'id' => Module::t('id'),
             'title' => Module::t('article_title'),
-            'alias' => Module::t('article_alias'),
+            'slug' => Module::t('article_slug'),
             'text' => Module::t('article_text'),
             'teaser_text' => Module::t('teaser_text'),
             'cat_id' => Module::t('article_cat_id'),
@@ -125,7 +125,7 @@ class Article extends NgRestModel
         return [
             'id' => 'text',
             'title' => 'text',
-            'alias' => 'text',
+            'slug' => 'text',
             'teaser_text' => ['textarea', 'markdown' => Yii::$app->controller->module->enableMarkdown],
             'text' => ['textarea', 'markdown' => Yii::$app->controller->module->enableMarkdown],
             'image_id' => 'image',
@@ -145,11 +145,11 @@ class Article extends NgRestModel
      */
     public function getDetailUrl()
     {
-        if ($this->cat && $this->cat->alias) {
-            return Url::toRoute(['/news/default/detail', 'id' => $this->id, 'title' => $this->alias, 'category' => $this->cat->alias]);
+        if ($this->cat && $this->cat->slug) {
+            return Url::toRoute(['/news/default/detail', 'id' => $this->id, 'title' => $this->slug, 'category' => $this->cat->slug]);
         }
-        if (!empty($this->alias)) {
-            return Url::toRoute(['/news/default/detail', 'id' => $this->id, 'title' => $this->alias]);
+        if (!empty($this->slug)) {
+            return Url::toRoute(['/news/default/detail', 'id' => $this->id, 'title' => $this->slug]);
         } else {
             return Url::toRoute(['/news/default/detail', 'id' => $this->id, 'title' => Inflector::slug($this->title)]);
         }
@@ -190,10 +190,9 @@ class Article extends NgRestModel
     public function ngRestScopes()
     {
         return [
-            [['list'], ['id', 'cat_id', 'alias', 'title', 'timestamp_create', 'image_id']],
-            // `create` has additional permission to provide `id` for cases when administrator neews to move articles from other blog-modules
-            [['create'], ['alias', 'cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until', 'image_id', 'image_list', 'file_list']],
-            [['update'], ['alias', 'cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until', 'image_id', 'image_list', 'file_list']],
+            [['list'], ['id', 'cat_id', 'slug', 'title', 'timestamp_create', 'image_id']],
+            [['create'], ['slug', 'cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until', 'image_id', 'image_list', 'file_list']],
+            [['update'], ['slug', 'cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until', 'image_id', 'image_list', 'file_list']],
             [['delete'], true],
         ];
     }

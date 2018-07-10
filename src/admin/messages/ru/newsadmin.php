@@ -38,5 +38,5 @@ return [
 
 // 1.1.0
 
-    'article_alias' => 'Название в ссылке (URL)',
+    'article_slug' => 'Название в ссылке (URL)',
 ];

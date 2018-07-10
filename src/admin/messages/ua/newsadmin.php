@@ -32,5 +32,5 @@ return [
 
 // 1.1.0
 
-    'article_alias' => 'Назва у посиланні (URL)',
+    'article_slug' => 'Назва у посиланні (URL)',
 ];

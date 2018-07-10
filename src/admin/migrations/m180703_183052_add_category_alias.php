@@ -12,12 +12,12 @@ class m180703_183052_add_category_alias extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('news_cat', 'alias', $this->text());
+        $this->addColumn('news_cat', 'slug', $this->text());
     }
 
     public function safeDown()
     {
-        $this->dropColumn('news_cat', 'alias');
+        $this->dropColumn('news_cat', 'slug');
     }
 
     /*

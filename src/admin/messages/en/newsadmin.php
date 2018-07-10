@@ -32,5 +32,5 @@ return [
 
 // 1.1.0
 
-    'article_alias' => 'Article URL alias',
+    'article_slug' => 'Article URL alias',
 ];
