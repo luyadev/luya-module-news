@@ -122,12 +122,17 @@ class Article extends NgRestModel
      */
     public function ngRestAttributeTypes()
     {
+        if (Yii::$app->controller->module->id == 'newsadmin') {
+            $markdownEnabled = Yii::$app->controller->module->enableMarkdown;
+        } else {
+            $markdownEnabled = true;
+        }
         return [
             'id' => 'text',
             'title' => 'text',
             'slug' => 'text',
-            'teaser_text' => ['textarea', 'markdown' => Yii::$app->controller->module->enableMarkdown],
-            'text' => ['textarea', 'markdown' => Yii::$app->controller->module->enableMarkdown],
+            'teaser_text' => ['textarea', 'markdown' => $markdownEnabled],
+            'text' => ['textarea', 'markdown' => $markdownEnabled],
             'image_id' => 'image',
             'timestamp_create' => 'datetime',
             'timestamp_display_from' => 'date',
