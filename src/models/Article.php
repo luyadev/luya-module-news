@@ -118,7 +118,7 @@ class Article extends NgRestModel
         return [
             'title' => 'text',
             'teaser_text' => ['textarea', 'markdown' => true],
-            'text' => ['wig'],
+            'text' => ['wysiwyg'],
             'image_id' => 'image',
             'timestamp_create' => 'datetime',
             'timestamp_display_from' => 'date',
