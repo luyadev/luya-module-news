@@ -50,7 +50,7 @@ After successfully installation and configuration run the migrate, import and se
 ./vendor/bin/luya import
 ```
 
-3.) Add the persmissions to your group (Under "System -> Groups" in the LUYA admin interface)
+3.) Add the permissions to your group (Under "System -> Groups" in the LUYA admin interface)
 
 You will now be able to edit and add news articles.
 
