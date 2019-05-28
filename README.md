@@ -50,7 +50,9 @@ After successfully installation and configuration run the migrate, import and se
 ./vendor/bin/luya import
 ```
 
-After adding the persmissions to your group you will be able to edit and add new news articles.
+3.) Add the persmissions to your group (Unter "System -> Groups" in the luya admin interface)
+
+You will now be able to edit and add news articles.
 
 ## Example Views
 
