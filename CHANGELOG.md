@@ -5,7 +5,7 @@ In order to read more about upgrading and BC breaks have a look at the [UPGRADE 
 
 ## 1.0.4 (in progress)
 
-+ Added polish langauge
++ [#13](https://github.com/luyadev/luya-module-news/pull/13) Added polish langauge
 
 ## 1.0.3 (4. September 2018)
 
