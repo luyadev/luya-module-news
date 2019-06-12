@@ -13,10 +13,10 @@
 		}
 	],
 	"support" : {
-		"issues" : "https://github.com/luyadev/luya/issues"
+		"issues" : "https://github.com/luyadev/luya-module-news/issues"
 	},
 	"require-dev" : {
-		"luyadev/luya-testsuite" : "~1.0.0"
+		"luyadev/luya-testsuite" : "^1.0"
 	},
 	"autoload" : {
 		"psr-4" : {
@@ -24,14 +24,8 @@
 		}
 	},
 	"autoload-dev" : {
-       "psr-4" : {
-       		"luya\\news\\tests\\" : "tests/",
-           "newstests\\" : "tests/"
-       }
-    },
-	"extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
+		"psr-4" : {
+			"luya\\news\\tests\\" : "tests/"
+		}
     }
 }
