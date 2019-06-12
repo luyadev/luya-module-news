@@ -1,6 +1,6 @@
 <?php
 return [
-    // added translation in 1.0.0-beta5: 
+    // added translation in 1.0.0-beta5:
     'news' => 'Nieuws',
     'news_administrate' => 'Beheer',
     'article' => 'Nieuwsbericht',
@@ -23,7 +23,7 @@ return [
     'tag_title' => 'Tag',
     'tag_title_create_error' => 'Voeg een tagtitel toe.',
 
-    // 1.0.0 
+    // 1.0.0
 
     'teaser_text' => 'Teasertekst',
 ];

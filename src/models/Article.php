@@ -141,12 +141,12 @@ class Article extends NgRestModel
 
     /**
      * Get image object.
-     * 
+     *
      * @return \luya\admin\image\Item|boolean
      */
     public function getImage()
     {
-    	return Yii::$app->storage->getImage($this->image_id);
+        return Yii::$app->storage->getImage($this->image_id);
     }
     
     /**

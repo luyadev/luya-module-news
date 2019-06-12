@@ -5,7 +5,7 @@ use luya\admin\filters\MediumCrop;
 /* @var $this \luya\web\View */
 /* @var $provider \yii\data\ActiveDataProvider */
 ?>
-<?php foreach($provider->models as $item): ?>
+<?php foreach ($provider->models as $item): ?>
     <?php /** @var \luya\news\models\Article $item */ ?>
     <h2><?= $item->title; ?></h2>
     <p><small><?= strftime('%A, %e. %B %Y', $item->timestamp_create); ?></small>

@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'news' => 'Noticias',
+    'news' => 'Noticias',
     'news_administrate' => 'Administrar',
     'article' => 'Entrada de noticias',
     'article_cat_id' => 'Categoría',
@@ -22,7 +22,7 @@ return [
     'tag' => 'Etiquetas',
     'tag_title' => 'Etiqueta',
     'tag_title_create_error' => 'Elija un título de etiqueta.',
-		
-	// 1.0.0
-	'teaser_text' => 'Teaser Text',
+        
+    // 1.0.0
+    'teaser_text' => 'Teaser Text',
 ];

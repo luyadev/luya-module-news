@@ -24,7 +24,7 @@ return [
     'tag' => 'Etiquettes',
     'tag_title' => 'Etiquette',
     'tag_title_create_error' => 'Choisir le titre de l\'étiquette',
-		
-	// 1.0.0
-	'teaser_text' => 'Teaser Text',
+        
+    // 1.0.0
+    'teaser_text' => 'Teaser Text',
 ];
