@@ -6,10 +6,10 @@ use Yii;
 use yii\helpers\Inflector;
 use luya\helpers\Url;
 use luya\news\admin\Module;
-use luya\admin\aws\TagActiveWindow;
 use luya\admin\ngrest\base\NgRestModel;
 use luya\admin\traits\SoftDeleteTrait;
-use luya\admin\traits\TagsTrait;
+use luya\admin\traits\TaggableTrait;
+use luya\admin\aws\TaggableActiveWindow;
 
 /**
  * This is the model class for table "news_article".
@@ -35,7 +35,8 @@ use luya\admin\traits\TagsTrait;
  */
 class Article extends NgRestModel
 {
-    use SoftDeleteTrait, TagsTrait;
+    use SoftDeleteTrait;
+    use TaggableTrait;
     
     public $i18n = ['title', 'text', 'teaser_text', 'image_list'];
 
@@ -186,7 +187,7 @@ class Article extends NgRestModel
     public function ngRestActiveWindows()
     {
         return [
-            ['class' => TagActiveWindow::class],
+            ['class' => TaggableActiveWindow::class],
         ];
     }
 
