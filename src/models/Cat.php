@@ -8,6 +8,9 @@ use luya\admin\ngrest\base\NgRestModel;
 /**
  * News Category Model
  *
+ * @property integer $id
+ * @property string $title
+ *
  * @author Basil Suter <basil@nadar.io>
  */
 class Cat extends NgRestModel
