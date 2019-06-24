@@ -6,6 +6,8 @@
 
 [![LUYA](https://img.shields.io/badge/Powered%20by-LUYA-brightgreen.svg)](https://luya.io)
 [![Latest Stable Version](https://poser.pugx.org/luyadev/luya-module-news/v/stable)](https://packagist.org/packages/luyadev/luya-module-news)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7ba026bc02e251fa1d63/maintainability)](https://codeclimate.com/github/luyadev/luya-module-news/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7ba026bc02e251fa1d63/test_coverage)](https://codeclimate.com/github/luyadev/luya-module-news/test_coverage)
 [![Total Downloads](https://poser.pugx.org/luyadev/luya-module-news/downloads)](https://packagist.org/packages/luyadev/luya-module-news)
 [![Slack Support](https://img.shields.io/badge/Slack-luyadev-yellowgreen.svg)](https://slack.luya.io/)
 
