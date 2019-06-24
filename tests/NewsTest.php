@@ -22,7 +22,7 @@ class NewsTest extends WebApplicationTestCase
             'components' => [
                 'db' => [
                     'class' => 'yii\db\Connection',
-                    'dsn' => 'fake',
+                    'dsn' => 'sqlite::memory:',
                 ],
             ]
         ];
@@ -33,11 +33,10 @@ class NewsTest extends WebApplicationTestCase
         $this->compareMessages(Yii::getAlias('@newsadmin/messages'), 'en');
     }
 
-    /*
+    
     public function testMigrationFiles()
     {
         // missing mysqli config
         $this->checkMigrationFolder('@newsadmin/migrations');
     }
-    */
 }
