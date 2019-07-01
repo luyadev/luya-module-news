@@ -12,7 +12,6 @@ return [
     'article_text' => 'Inhalt',
     'article_image_id' => 'Bild',
     'article_timestamp_create' => 'Erstellungsdatum',
-    'article_is_online' => 'Artikel online zeigen',
     'article_image_list' => 'Bilderliste',
     'article_file_list' => 'Dateiliste',
     'article_tag' => 'Schlagwort',
@@ -27,4 +26,8 @@ return [
 // 1.0.0
     
     'teaser_text' => 'Teaser Text',
+
+// 2.0.0
+
+    'article_is_online' => 'Artikel online zeigen',
 ];

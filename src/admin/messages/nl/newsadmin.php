@@ -20,7 +20,11 @@ return [
     'tag_title' => 'Tag',
     'tag_title_create_error' => 'Voeg een tagtitel toe.',
 
-    // 1.0.0
+// 1.0.0
 
     'teaser_text' => 'Teasertekst',
+
+// 2.0.0
+
+    'article_is_online' => 'Show article online',
 ];

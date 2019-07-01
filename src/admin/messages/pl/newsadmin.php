@@ -23,7 +23,11 @@ return [
     'tag_title' => 'Tytuł tagu',
     'tag_title_create_error' => 'Dodaj tytuł tagu.',
 
-    // 1.0.0
+// 1.0.0
     
     'teaser_text' => 'Tekst zwiastuna',
+
+// 2.0.0
+
+    'article_is_online' => 'Show article online',
 ];

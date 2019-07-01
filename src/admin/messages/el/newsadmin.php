@@ -20,7 +20,11 @@ return [
         'tag_title' => 'Ετικέτα',
         'tag_title_create_error' => 'Παρακαλώ επιλέξτε τίτλο ετικέτας.',
 
-        // 1.0.0
+// 1.0.0
 
         'teaser_text' => 'Teaser Text',
+
+// 2.0.0
+
+    'article_is_online' => 'Show article online',
 ];

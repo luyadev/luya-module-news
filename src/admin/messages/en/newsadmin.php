@@ -12,7 +12,6 @@ return [
     'article_text' => 'Content',
     'article_image_id' => 'Image',
     'article_timestamp_create' => 'Date',
-    'article_is_online' => 'Show article online',
     'article_image_list' => 'Image list',
     'article_file_list' => 'File list',
     'article_tag' => 'Tag',
@@ -27,4 +26,8 @@ return [
 // 1.0.0
     
     'teaser_text' => 'Teaser Text',
+
+// 2.0.0
+
+    'article_is_online' => 'Show article online',
 ];

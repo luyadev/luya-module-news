@@ -20,6 +20,11 @@ return [
     'tag_title' => 'Etiqueta',
     'tag_title_create_error' => 'Elija un título de etiqueta.',
         
-    // 1.0.0
+// 1.0.0
+
     'teaser_text' => 'Teaser Text',
+
+// 2.0.0
+
+    'article_is_online' => 'Show article online',
 ];

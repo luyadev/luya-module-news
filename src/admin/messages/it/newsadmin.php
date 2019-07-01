@@ -23,4 +23,8 @@ return [
 // 1.0.0
     
     'teaser_text' => 'Sottotitolo',
+
+// 2.0.0
+
+    'article_is_online' => 'Show article online',
 ];
