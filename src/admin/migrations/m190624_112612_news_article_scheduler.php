@@ -7,7 +7,8 @@ class m190624_112612_news_article_scheduler extends Migration
     public function safeUp()
     {
         $this->addColumn('news_article', 'is_online', $this->boolean()->notNull()->defaultValue(false));
-        $this->execute(<<<SQL
+        $this->execute(
+            <<<SQL
 UPDATE news_article
 SET is_online = (timestamp_display_from < NOW() AND (
     NOT is_display_limit OR (
