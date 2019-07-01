@@ -25,10 +25,8 @@ use luya\admin\aws\TaggableActiveWindow;
  * @property integer $update_user_id
  * @property integer $timestamp_create
  * @property integer $timestamp_update
- * @property integer $timestamp_display_from
- * @property integer $timestamp_display_until
- * @property integer $is_deleted
- * @property integer $is_display_limit
+ * @property boolean $is_deleted
+ * @property boolean $is_online
  * @property string $teaser_text
  * @property string $detailUrl Return the link to the detail url of a news item.
  * @author Basil Suter <basil@nadar.io>
@@ -72,9 +70,6 @@ class Article extends NgRestModel
         if (empty($this->timestamp_create)) {
             $this->timestamp_create = time();
         }
-        if (empty($this->timestamp_display_from)) {
-            $this->timestamp_display_from = time();
-        }
     }
 
     /**
@@ -85,8 +80,10 @@ class Article extends NgRestModel
         return [
             [['title', 'text'], 'required'],
             [['title', 'text', 'image_list', 'file_list', 'teaser_text'], 'string'],
-            [['cat_id', 'create_user_id', 'update_user_id', 'timestamp_create', 'timestamp_update', 'timestamp_display_from', 'timestamp_display_until'], 'integer'],
-            [['is_deleted', 'is_display_limit'], 'boolean'],
+            [['cat_id'], 'integer'],
+            ['timestamp_create', 'integer'],
+            [['cat_id'], 'exist', 'targetClass' => Cat::class, 'targetAttribute' => 'id'],
+            [['is_deleted', 'is_online'], 'boolean'],
             [['image_id'], 'safe'],
         ];
     }
@@ -103,9 +100,7 @@ class Article extends NgRestModel
             'cat_id' => Module::t('article_cat_id'),
             'image_id' => Module::t('article_image_id'),
             'timestamp_create' => Module::t('article_timestamp_create'),
-            'timestamp_display_from' => Module::t('article_timestamp_display_from'),
-            'timestamp_display_until' => Module::t('article_timestamp_display_until'),
-            'is_display_limit' => Module::t('article_is_display_limit'),
+            'is_online' => Module::t('article_is_online'),
             'image_list' => Module::t('article_image_list'),
             'file_list' => Module::t('article_file_list'),
         ];
@@ -121,9 +116,8 @@ class Article extends NgRestModel
             'teaser_text' => ['textarea', 'markdown' => true],
             'text' => ['textarea', 'markdown' => true],
             'image_id' => 'image',
+            'is_online'  => ['toggleStatus', 'scheduling' => true],
             'timestamp_create' => 'datetime',
-            'timestamp_display_from' => 'date',
-            'timestamp_display_until' => 'date',
             'is_display_limit' => 'toggleStatus',
             'image_list' => 'imageArray',
             'file_list' => 'fileArray',
@@ -164,7 +158,7 @@ class Article extends NgRestModel
     public function ngRestAttributeGroups()
     {
         return [
-            [['timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until'], 'Time', 'collapsed'],
+            [['timestamp_create', 'is_online'], 'Time', 'collapsed'],
             [['image_id', 'image_list', 'file_list'], 'Media'],
         ];
     }
@@ -175,8 +169,8 @@ class Article extends NgRestModel
     public function ngRestScopes()
     {
         return [
-            [['list'], ['cat_id', 'title', 'timestamp_create', 'image_id']],
-            [['create', 'update'], ['cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'timestamp_display_from', 'is_display_limit', 'timestamp_display_until', 'image_id', 'image_list', 'file_list']],
+            [['list'], ['cat_id', 'title', 'timestamp_create', 'is_online', 'image_id']],
+            [['create', 'update'], ['cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'is_online', 'image_id', 'image_list', 'file_list']],
             [['delete'], true],
         ];
     }
@@ -199,23 +193,14 @@ class Article extends NgRestModel
     public static function getAvailableNews($limit = false)
     {
         $q = self::find()
-            ->andWhere('timestamp_display_from <= :time', ['time' => time()])
-            ->orderBy('timestamp_display_from DESC');
+            ->andWhere(['is_online' => true])
+            ->orderBy('timestamp_create DESC');
         
         if ($limit) {
             $q->limit($limit);
         }
         
         $articles = $q->all();
-
-        // filter if display time is limited
-        foreach ($articles as $key => $article) {
-            if ($article->is_display_limit) {
-                if ($article->timestamp_display_until <= time()) {
-                    unset($articles[$key]);
-                }
-            }
-        }
 
         return $articles;
     }

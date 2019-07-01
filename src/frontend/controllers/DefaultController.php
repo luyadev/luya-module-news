@@ -7,6 +7,7 @@ use luya\news\models\Article;
 use luya\news\models\Cat;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
 
 /**
  * News Module Default Controller contains actions to display and render views with predefined data.
@@ -31,7 +32,7 @@ class DefaultController extends \luya\web\Controller
     public function actionIndex()
     {
         $provider = new ActiveDataProvider([
-            'query' => Article::find()->andWhere(['is_deleted' => false]),
+            'query' => Article::find()->andWhere(['is_deleted' => false, 'is_online' => true]),
             'sort' => [
                 'defaultOrder' => $this->module->articleDefaultOrder,
             ],
@@ -59,11 +60,11 @@ class DefaultController extends \luya\web\Controller
         $ids = explode(",", Html::encode($ids));
         
         if (!is_array($ids)) {
-            return $this->goHome();
+            throw new NotFoundHttpException();
         }
         
         $provider = new ActiveDataProvider([
-            'query' => Article::find()->where(['in', 'cat_id', $ids])->andWhere(['is_deleted' => false]),
+            'query' => Article::find()->where(['in', 'cat_id', $ids])->andWhere(['is_deleted' => false, 'is_online' => true]),
             'sort' => [
                 'defaultOrder' => $this->module->articleDefaultOrder,
             ],
@@ -114,11 +115,11 @@ class DefaultController extends \luya\web\Controller
         $model = Cat::findOne($categoryId);
         
         if (!$model) {
-            return $this->goHome();
+            throw new NotFoundHttpException();
         }
         
         $provider = new ActiveDataProvider([
-            'query' => $model->getArticles(),
+            'query' => $model->getArticles()->andWhere(['is_deleted' => false, 'is_online' => true]),
             'sort' => [
                 'defaultOrder' => $this->module->categoryArticleDefaultOrder,
             ],
@@ -144,10 +145,10 @@ class DefaultController extends \luya\web\Controller
      */
     public function actionDetail($id, $title)
     {
-        $model = Article::findOne(['id' => $id, 'is_deleted' => false]);
+        $model = Article::findOne(['id' => $id, 'is_deleted' => false, 'is_online' => true]);
         
         if (!$model) {
-            return $this->goHome();
+            throw new NotFoundHttpException();
         }
         
         return $this->render('detail', [

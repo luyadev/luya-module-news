@@ -15,6 +15,9 @@
 	"support" : {
 		"issues" : "https://github.com/luyadev/luya-module-news/issues"
 	},
+	"require" : {
+		"luyadev/luya-module-admin" : "^2.0"
+	},
 	"require-dev" : {
 		"luyadev/luya-testsuite" : "^1.0"
 	},
