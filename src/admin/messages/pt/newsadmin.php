@@ -22,12 +22,12 @@ return [
     'tag' => 'Tags',
     'tag_title' => 'Tag',
     'tag_title_create_error' => 'Por favor, escolha um título para a tag.',
-    
+
 // 1.0.0
-    
+
     'teaser_text' => 'Texto de chamada',
 
 // 2.0.0
 
-    'article_is_online' => 'Show article online',
+    'article_is_online' => 'Visualizar notícia (Online)',
 ];
