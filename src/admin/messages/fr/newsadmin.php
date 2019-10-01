@@ -24,9 +24,9 @@ return [
         
 // 1.0.0
 
-    'teaser_text' => 'Teaser Text',
+    'teaser_text' => 'Text d\'accroche',
 
 // 2.0.0
 
-    'article_is_online' => 'Show article online',
+    'article_is_online' => 'Montrer l\'article en ligne',
 ];
