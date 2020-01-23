@@ -57,6 +57,18 @@ After successfully installation and configuration run the migrate, import and se
 
 You will now be able to edit and add news articles.
 
+With version 2.0 of news module, the admin queue is required in order to switch the visibility of the news based on time, therefore read [LUYA Queue](https://luya.io/guide/app-queue) or enable:
+
+```php
+'modules' => [
+    'admin' => [
+        'class' => 'luya\admin\Module',
+        // ...
+        'autoBootstrapQueue' => true,
+    ]
+]
+```
+
 ## Example Views
 
 As the module will try to render a view for the news overview, here is what this could look like this in a very basic way:
