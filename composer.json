@@ -38,5 +38,11 @@
 		"psr-4" : {
 			"luya\\news\\tests\\" : "tests/"
 		}
-    }
+	},
+	"repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
