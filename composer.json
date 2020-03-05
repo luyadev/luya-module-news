@@ -26,6 +26,14 @@
 			"luya\\news\\" : "src/"
 		}
 	},
+	"config": {
+        "platform": {
+            "php": "7.2"
+        },
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
 	"autoload-dev" : {
 		"psr-4" : {
 			"luya\\news\\tests\\" : "tests/"
