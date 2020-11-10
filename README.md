@@ -6,11 +6,10 @@
 
 [![LUYA](https://img.shields.io/badge/Powered%20by-LUYA-brightgreen.svg)](https://luya.io)
 [![Latest Stable Version](https://poser.pugx.org/luyadev/luya-module-news/v/stable)](https://packagist.org/packages/luyadev/luya-module-news)
-[![Build Status](https://travis-ci.org/luyadev/luya-module-news.svg?branch=master)](https://travis-ci.org/luyadev/luya-module-news)
+![Tests](https://github.com/luyadev/luya-module-news/workflows/Tests/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7ba026bc02e251fa1d63/maintainability)](https://codeclimate.com/github/luyadev/luya-module-news/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7ba026bc02e251fa1d63/test_coverage)](https://codeclimate.com/github/luyadev/luya-module-news/test_coverage)
 [![Total Downloads](https://poser.pugx.org/luyadev/luya-module-news/downloads)](https://packagist.org/packages/luyadev/luya-module-news)
-[![Slack Support](https://img.shields.io/badge/Slack-luyadev-yellowgreen.svg)](https://slack.luya.io/)
 
 The news module will provided you a basic news system with categories and tags.
 
@@ -79,12 +78,12 @@ As the module will try to render a view for the news overview, here is what this
 <?php
 use yii\widgets\LinkPager;
 
-/* @var $this \luya\web\View */
-/* @var $provider \yii\data\ActiveDataProvider */
+/** @var \luya\web\View $this */
+/** @var \yii\data\ActiveDataProvider $provider */
 ?>
 <h2>Latest News Articles</h2>
 <?php foreach($provider->models as $item): ?>
-    <?php /* @var $item \luya\news\models\Article */ ?>
+    <?php /** @var \luya\news\models\Article $item */ ?>
     <pre>
         <?php print_r($item->toArray()); ?>
     </pre>
@@ -100,8 +99,8 @@ use yii\widgets\LinkPager;
 
 ```php
 <?php
-/* @var $this \luya\web\View */
-/* @var $model \luya\news\models\Article */
+/** @var \luya\web\View $this  */
+/** @var \luya\news\models\Article $model  */
 ?>
 <h1><?= $model->title; ?></h1>
 <pre>
