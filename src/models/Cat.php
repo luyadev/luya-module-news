@@ -6,12 +6,13 @@ use luya\news\admin\Module;
 use luya\admin\ngrest\base\NgRestModel;
 
 /**
- * News Category Model
+ * News Category
  *
  * @property integer $id
  * @property string $title
  *
  * @author Basil Suter <basil@nadar.io>
+ * @since 1.0.0
  */
 class Cat extends NgRestModel
 {
@@ -97,13 +98,18 @@ class Cat extends NgRestModel
     }
     
     /**
-     * Get articles for this category.
+     * Articles Relation
+     * 
+     * @return Article[]
      */
     public function getArticles()
     {
         return $this->hasMany(Article::class, ['cat_id' => 'id']);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function ngRestRelations()
     {
         return [

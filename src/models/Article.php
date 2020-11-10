@@ -10,9 +10,10 @@ use luya\admin\ngrest\base\NgRestModel;
 use luya\admin\traits\SoftDeleteTrait;
 use luya\admin\traits\TaggableTrait;
 use luya\admin\aws\TaggableActiveWindow;
+use luya\admin\buttons\DuplicateActiveButton;
 
 /**
- * This is the model class for table "news_article".
+ * News Article
  *
  * @property integer $id
  * @property string $title
@@ -29,7 +30,11 @@ use luya\admin\aws\TaggableActiveWindow;
  * @property boolean $is_online
  * @property string $teaser_text
  * @property string $detailUrl Return the link to the detail url of a news item.
+ * 
+ * @property Cat $cat
+ * 
  * @author Basil Suter <basil@nadar.io>
+ * @since 1.0.0
  */
 class Article extends NgRestModel
 {
@@ -181,12 +186,27 @@ class Article extends NgRestModel
     public function ngRestActiveWindows()
     {
         return [
-            ['class' => TaggableActiveWindow::class],
+            [
+                'class' => TaggableActiveWindow::class,
+            ],
         ];
     }
 
     /**
-     *
+     * {@inheritDoc}
+     */
+    public function ngRestActiveButtons()
+    {
+        return [
+            [
+                'class' => DuplicateActiveButton::class,
+            ],
+        ];
+    }
+
+    /**
+     * Returns only available News items.
+     * 
      * @param false|int $limit
      * @return Article
      */
@@ -206,8 +226,7 @@ class Article extends NgRestModel
     }
 
     /**
-     *
-     * @return \yii\db\ActiveQuery
+     * @return Cat
      */
     public function getCat()
     {
@@ -215,9 +234,10 @@ class Article extends NgRestModel
     }
     
     /**
-     * The cat name short getter.
+     * Returns the Category name
      *
      * @return string
+     * @deprecated Since version 2.0 will be removed in 3.0
      */
     public function getCategoryName()
     {
