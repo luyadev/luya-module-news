@@ -1,8 +1,10 @@
 <?php
 use luya\admin\filters\MediumCrop;
+use luya\news\models\Article;
+use luya\web\View;
 
-/* @var $this \luya\web\View */
-/* @var $model \luya\news\models\Article */
+/** @var View $this  */
+/** @var Article $model */
 ?>
 <h1><?= $model->title; ?></h1>
 <?php if ($model->image_id): ?>
@@ -18,4 +20,8 @@ use luya\admin\filters\MediumCrop;
 		<?php endforeach;?>
 	</div>
 <?php endif; ?>
+<?php if ($model->link): ?>
+	<a href="<?= $model->link->getHref(); ?>" target="<?= $model->link->getTarget(); ?>">Detail</a>
+<?php endif; ?>
+<p>Author: <?= $model->authorName; ?></p>
 <p style="margin-top:15px;"><small><i><?= strftime('%A, %e. %B %Y', $model->timestamp_create); ?></i></small>

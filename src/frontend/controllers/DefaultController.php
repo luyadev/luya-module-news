@@ -32,7 +32,7 @@ class DefaultController extends \luya\web\Controller
     public function actionIndex()
     {
         $provider = new ActiveDataProvider([
-            'query' => Article::find()->andWhere(['is_deleted' => false, 'is_online' => true]),
+            'query' => Article::find()->andWhere(['is_deleted' => false, 'is_online' => true])->with(['createUser']),
             'sort' => [
                 'defaultOrder' => $this->module->articleDefaultOrder,
             ],
@@ -44,7 +44,7 @@ class DefaultController extends \luya\web\Controller
         ]);
         
         return $this->render('index', [
-            'model' => Article::className(),
+            'model' => Article::class,
             'provider' => $provider,
         ]);
     }
@@ -64,7 +64,7 @@ class DefaultController extends \luya\web\Controller
         }
         
         $provider = new ActiveDataProvider([
-            'query' => Article::find()->where(['in', 'cat_id', $ids])->andWhere(['is_deleted' => false, 'is_online' => true]),
+            'query' => Article::find()->where(['in', 'cat_id', $ids])->andWhere(['is_deleted' => false, 'is_online' => true])->with(['createUser']),
             'sort' => [
                 'defaultOrder' => $this->module->articleDefaultOrder,
             ],
@@ -119,7 +119,7 @@ class DefaultController extends \luya\web\Controller
         }
         
         $provider = new ActiveDataProvider([
-            'query' => $model->getArticles()->andWhere(['is_deleted' => false, 'is_online' => true]),
+            'query' => $model->getArticles()->andWhere(['is_deleted' => false, 'is_online' => true])->with(['createUser']),
             'sort' => [
                 'defaultOrder' => $this->module->categoryArticleDefaultOrder,
             ],

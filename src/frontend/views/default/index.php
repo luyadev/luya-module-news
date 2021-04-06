@@ -21,6 +21,7 @@ use luya\admin\filters\MediumCrop;
     <?php else: ?>
     <?= $item->teaser_text; ?>
     <?php endif; ?>
+    <p>Author: <?= $item->authorName; ?></p>
     <p style="margin-top:15px;">
         <a class="btn btn-primary" href="<?= $item->detailUrl; ?>">Read Article</a>
     </p>

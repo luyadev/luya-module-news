@@ -11,6 +11,8 @@ use luya\admin\traits\SoftDeleteTrait;
 use luya\admin\traits\TaggableTrait;
 use luya\admin\aws\TaggableActiveWindow;
 use luya\admin\buttons\DuplicateActiveButton;
+use luya\admin\models\User;
+use luya\web\LinkInterface;
 
 /**
  * News Article
@@ -20,8 +22,8 @@ use luya\admin\buttons\DuplicateActiveButton;
  * @property string $text
  * @property integer $cat_id
  * @property string $image_id
- * @property string $image_list
- * @property string $file_list
+ * @property array $image_list
+ * @property array $file_list
  * @property integer $create_user_id
  * @property integer $update_user_id
  * @property integer $timestamp_create
@@ -30,8 +32,12 @@ use luya\admin\buttons\DuplicateActiveButton;
  * @property boolean $is_online
  * @property string $teaser_text
  * @property string $detailUrl Return the link to the detail url of a news item.
- * 
+ * @property string $author
+ * @property LinkInterface $link
+ * @property string $authorName
  * @property Cat $cat
+ * @property User $createUser
+ * @property User $updateUser
  * 
  * @author Basil Suter <basil@nadar.io>
  * @since 1.0.0
@@ -41,7 +47,7 @@ class Article extends NgRestModel
     use SoftDeleteTrait;
     use TaggableTrait;
     
-    public $i18n = ['title', 'text', 'teaser_text', 'image_list'];
+    public $i18n = ['title', 'text', 'teaser_text', 'image_list', 'link'];
 
     /**
      * @inheritdoc
@@ -84,12 +90,12 @@ class Article extends NgRestModel
     {
         return [
             [['title', 'text'], 'required'],
-            [['title', 'text', 'image_list', 'file_list', 'teaser_text'], 'string'],
+            [['title', 'text', 'image_list', 'file_list', 'teaser_text', 'author'], 'string'],
             [['cat_id'], 'integer'],
             ['timestamp_create', 'integer'],
             [['cat_id'], 'exist', 'targetClass' => Cat::class, 'targetAttribute' => 'id'],
             [['is_deleted', 'is_online'], 'boolean'],
-            [['image_id'], 'safe'],
+            [['image_id', 'link'], 'safe'],
         ];
     }
 
@@ -108,6 +114,8 @@ class Article extends NgRestModel
             'is_online' => Module::t('article_is_online'),
             'image_list' => Module::t('article_image_list'),
             'file_list' => Module::t('article_file_list'),
+            'author' => 'Author',
+            'link' => 'Link',
         ];
     }
     
@@ -126,7 +134,9 @@ class Article extends NgRestModel
             'is_display_limit' => 'toggleStatus',
             'image_list' => 'imageArray',
             'file_list' => 'fileArray',
-            'cat_id' => ['selectModel', 'modelClass' => Cat::className(), 'valueField' => 'id', 'labelField' => 'title']
+            'cat_id' => ['selectModel', 'modelClass' => Cat::class, 'valueField' => 'id', 'labelField' => 'title'],
+            'author' => 'text',
+            'link' => 'link',
         ];
     }
 
@@ -175,7 +185,7 @@ class Article extends NgRestModel
     {
         return [
             [['list'], ['cat_id', 'title', 'timestamp_create', 'is_online', 'image_id']],
-            [['create', 'update'], ['cat_id', 'title', 'teaser_text', 'text', 'timestamp_create', 'is_online', 'image_id', 'image_list', 'file_list']],
+            [['create', 'update'], ['cat_id', 'title', 'teaser_text', 'text', 'author', 'link', 'timestamp_create', 'is_online', 'image_id', 'image_list', 'file_list']],
             [['delete'], true],
         ];
     }
@@ -242,5 +252,41 @@ class Article extends NgRestModel
     public function getCategoryName()
     {
         return $this->cat->title;
+    }
+
+    /**
+     * Created User Relation
+     *
+     * @return User
+     * @since 3.0
+     */
+    public function getCreateUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'create_user_id']);
+    }
+
+    /**
+     * Updated user Relation
+     *
+     * @return User
+     * @since 3.0
+     */
+    public function getUpdateUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'update_user_id']);
+    }
+
+    /**
+     * Returns the Author Name.
+     * 
+     * If an author name is defined, the author is returned, otherwise the first name and last name
+     * of the person which has created the article will be returned.
+     *
+     * @return string
+     * @since 3.0
+     */
+    public function getAuthorName()
+    {
+        return $this->author ? $this->author : $this->createUser->firstname . ' ' . $this->createUser->lastname;
     }
 }
