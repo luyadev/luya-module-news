@@ -91,8 +91,7 @@ class Article extends NgRestModel
         return [
             [['title', 'text'], 'required'],
             [['title', 'text', 'image_list', 'file_list', 'teaser_text', 'author'], 'string'],
-            [['cat_id'], 'integer'],
-            ['timestamp_create', 'integer'],
+            [['cat_id', 'create_user_id', 'update_user_id', 'timestamp_create', 'timestamp_update'], 'integer'],
             [['cat_id'], 'exist', 'targetClass' => Cat::class, 'targetAttribute' => 'id'],
             [['is_deleted', 'is_online'], 'boolean'],
             [['image_id', 'link'], 'safe'],
