@@ -41,7 +41,15 @@ class DefaultControllerTest extends NewsTest
             ]
         ]);
 
-        $this->createAdminLangFixture();
+        $this->createAdminLangFixture([
+            1 => [
+                'id' => 1,
+                'name' => 'de',
+                'short_code' => 'de',
+                'is_default' => 1,
+                'is_deleted' => 0,
+            ]
+        ]);
     }
 
     public function testActions()
