@@ -1,5 +1,9 @@
 # LUYA News Module Upgrade
 
+## from 2.0 to 3.0 ()
+
++ New migrations must be applied with the `migrate` command.
+
 ## from 1.0 to 2.0 (1. July 2019)
 
 + **The information of future news article visibility is lost after the upgrade! Those articles must be scheduled again!**

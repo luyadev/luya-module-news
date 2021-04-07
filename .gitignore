@@ -3,3 +3,5 @@
 /.settings/
 /.buildpath
 /phpunit.xml
+/.php_cs_cache
+/composer.lock

@@ -17,6 +17,13 @@ class NewsTest extends WebApplicationTestCase
             'id' => 'newstest',
             'basePath' => dirname(__DIR__),
             'modules' => [
+                'admin' => [
+                    'class' => 'luya\admin\Module',
+                ],
+                'newsfrontend' => [
+                    'class' => 'luya\news\frontend\Module',
+                    'useAppViewPath' => false,
+                ],
                 'newsadmin' => 'luya\news\admin\Module',
             ],
             'components' => [
