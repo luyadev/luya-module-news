@@ -30,4 +30,8 @@ return [
 // 2.0.0
 
     'article_is_online' => 'Visualizar notícia (Online)',
+
+// 3.0.1
+
+    'preview' => 'Preview',
 ];

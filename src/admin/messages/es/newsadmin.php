@@ -27,4 +27,8 @@ return [
 // 2.0.0
 
     'article_is_online' => 'Show article online',
+
+// 3.0.1
+
+    'preview' => 'Preview',
 ];

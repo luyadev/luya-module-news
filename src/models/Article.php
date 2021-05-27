@@ -12,6 +12,7 @@ use luya\admin\traits\TaggableTrait;
 use luya\admin\aws\TaggableActiveWindow;
 use luya\admin\buttons\DuplicateActiveButton;
 use luya\admin\models\User;
+use luya\news\admin\aws\PreviewActiveWindow;
 use luya\web\LinkInterface;
 
 /**
@@ -198,6 +199,9 @@ class Article extends NgRestModel
             [
                 'class' => TaggableActiveWindow::class,
             ],
+            [
+                'class' => PreviewActiveWindow::class,
+            ]
         ];
     }
 
@@ -287,5 +291,10 @@ class Article extends NgRestModel
     public function getAuthorName()
     {
         return $this->author ? $this->author : $this->createUser->firstname . ' ' . $this->createUser->lastname;
+    }
+
+    public function getPreviewHash()
+    {
+        return md5($this->timestamp_create . $this->create_user_id . $this->id);
     }
 }
