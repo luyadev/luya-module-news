@@ -55,10 +55,14 @@ class DefaultControllerTest extends NewsTest
     public function testActions()
     {
         $ctrl = new DefaultController('default', $this->app->getModule('newsfrontend'));
+
+        $model = Article::findOne(['id' => 1]);
+        
         $ctrl->layout = false;
         $this->assertNotEmpty($ctrl->actionIndex());
         $this->assertNotEmpty($ctrl->actionCategories(1));
         $this->assertNotEmpty($ctrl->actionCategory(1));
         $this->assertNotEmpty($ctrl->actionDetail(1, 'Title'));
+        $this->assertNotEmpty($ctrl->actionPreview(1, $model->getPreviewHash()));
     }
 }

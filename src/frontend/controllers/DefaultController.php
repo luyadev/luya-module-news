@@ -155,4 +155,21 @@ class DefaultController extends \luya\web\Controller
             'model' => $model,
         ]);
     }
+
+    public function actionPreview($id, $hash)
+    {
+        $model = Article::findOne(['id' => $id, 'is_deleted' => false]);
+        
+        if (!$model) {
+            throw new NotFoundHttpException();
+        }
+
+        if ($hash != $model->getPreviewHash()) {
+            throw new NotFoundHttpException("Invalid preview hash");
+        }
+
+        return $this->render('detail', [
+            'model' => $model,
+        ]);
+    }
 }

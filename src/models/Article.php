@@ -12,6 +12,7 @@ use luya\admin\traits\TaggableTrait;
 use luya\admin\aws\TaggableActiveWindow;
 use luya\admin\buttons\DuplicateActiveButton;
 use luya\admin\models\User;
+use luya\news\admin\aws\PreviewActiveWindow;
 use luya\web\LinkInterface;
 
 /**
@@ -38,6 +39,7 @@ use luya\web\LinkInterface;
  * @property Cat $cat
  * @property User $createUser
  * @property User $updateUser
+ * @property string $previewHash
  * 
  * @author Basil Suter <basil@nadar.io>
  * @since 1.0.0
@@ -198,6 +200,9 @@ class Article extends NgRestModel
             [
                 'class' => TaggableActiveWindow::class,
             ],
+            [
+                'class' => PreviewActiveWindow::class,
+            ]
         ];
     }
 
@@ -287,5 +292,16 @@ class Article extends NgRestModel
     public function getAuthorName()
     {
         return $this->author ? $this->author : $this->createUser->firstname . ' ' . $this->createUser->lastname;
+    }
+
+    /**
+     * Generate A preview hash with most static values
+     *
+     * @return string
+     * @since 3.1.0
+     */
+    public function getPreviewHash()
+    {
+        return md5($this->timestamp_create . $this->create_user_id . $this->id);
     }
 }
