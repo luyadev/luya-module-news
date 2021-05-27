@@ -11,6 +11,12 @@ use luya\admin\components\AdminMenuBuilder;
  */
 final class Module extends \luya\admin\base\Module
 {
+    /**
+     * @var boolean Whether a news preview button should be displayed in the admin crud list or not. This requires 
+     * @since 3.1.0
+     */
+    public $previewButton = false;
+
     public $apis = [
         'api-news-article' => 'luya\news\admin\apis\ArticleController',
         'api-news-cat' => 'luya\news\admin\apis\CatController',

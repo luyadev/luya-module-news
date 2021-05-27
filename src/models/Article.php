@@ -196,14 +196,19 @@ class Article extends NgRestModel
      */
     public function ngRestActiveWindows()
     {
-        return [
+        $buttons = [
             [
                 'class' => TaggableActiveWindow::class,
             ],
-            [
-                'class' => PreviewActiveWindow::class,
-            ]
         ];
+
+        if (Module::getInstance()->previewButton) {
+            $buttons[] = [
+                'class' => PreviewActiveWindow::class,
+            ];
+        }
+
+        return $buttons;
     }
 
     /**
