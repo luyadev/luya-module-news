@@ -6,14 +6,18 @@ use luya\admin\ngrest\base\ActiveWindow;
 use luya\cms\helpers\Url;
 use luya\news\admin\Module;
 
+/**
+ * Preview Active Window
+ * 
+ * @since 3.1.0
+ * @author Basil Suter <git@nadar.io>
+ */
 class PreviewActiveWindow extends ActiveWindow
 {
     public $module = 'newsadmin';
 
     /**
-     * Default label if not set in the ngrest model.
-     *
-     * @return string The name of of the ActiveWindow. This is displayed in the CRUD list.
+     * {@inheritDoc}
      */
     public function defaultLabel()
     {
@@ -21,15 +25,16 @@ class PreviewActiveWindow extends ActiveWindow
     }
 
     /**
-     * Default icon if not set in the ngrest model.
-     *
-     * @var string The icon name from goolges material icon set (https://material.io/icons/)
+     * {@inheritDoc}
      */
     public function defaultIcon()
     {
         return 'preview';    
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getTitle()
     {
         return $this->model->title;

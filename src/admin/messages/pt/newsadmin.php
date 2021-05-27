@@ -31,7 +31,7 @@ return [
 
     'article_is_online' => 'Visualizar notícia (Online)',
 
-// 3.0.1
+// 3.1.0
 
     'preview' => 'Preview',
 ];

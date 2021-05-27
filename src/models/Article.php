@@ -39,6 +39,7 @@ use luya\web\LinkInterface;
  * @property Cat $cat
  * @property User $createUser
  * @property User $updateUser
+ * @property string $previewHash
  * 
  * @author Basil Suter <basil@nadar.io>
  * @since 1.0.0
@@ -293,6 +294,12 @@ class Article extends NgRestModel
         return $this->author ? $this->author : $this->createUser->firstname . ' ' . $this->createUser->lastname;
     }
 
+    /**
+     * Generate A preview hash with most static values
+     *
+     * @return string
+     * @since 3.1.0
+     */
     public function getPreviewHash()
     {
         return md5($this->timestamp_create . $this->create_user_id . $this->id);

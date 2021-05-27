@@ -31,7 +31,7 @@ return [
 
     'article_is_online' => 'Artikel online zeigen',
 
-// 3.0.1
+// 3.1.0
 
     'preview' => 'Vorschau',
 ];
