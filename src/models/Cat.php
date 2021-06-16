@@ -113,7 +113,7 @@ class Cat extends NgRestModel
     public function ngRestRelations()
     {
         return [
-           ['label' => 'Articles', 'apiEndpoint' => Article::ngRestApiEndpoint(), 'dataProvider' => $this->getArticles()],
+           ['label' => 'Articles', 'targetModel' => Article::class, 'dataProvider' => $this->getArticles()],
         ];
     }
 }
