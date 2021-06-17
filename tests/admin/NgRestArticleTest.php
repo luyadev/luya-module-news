@@ -22,7 +22,14 @@ class NgRestArticleTest extends NgRestTestCase
                     'class' => 'yii\db\Connection',
                     'dsn' => 'sqlite::memory:',
                 ],
-            ]
+            ],
+            'modules' => [
+                'newsfrontend' => [
+                    'class' => 'luya\news\frontend\Module',
+                    'useAppViewPath' => false,
+                ],
+                'newsadmin' => 'luya\news\admin\Module',
+            ],
         ];
     }
 }
