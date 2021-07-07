@@ -5,7 +5,7 @@ In order to read more about upgrading and BC breaks have a look at the [UPGRADE 
 
 ## 4.0.0 ()
 
-+ []() New field to archive certain News Articles. A new archive action is available where developers can list the archived entries.
++ [#24](https://github.com/luyadev/luya-module-news/pull/24) New field to archive certain News Articles. A new archive action is available where developers can list the archived entries.
 
 ## 3.1.0 (14. June 2021)
 
