@@ -60,6 +60,7 @@ class DefaultControllerTest extends NewsTest
         
         $ctrl->layout = false;
         $this->assertNotEmpty($ctrl->actionIndex());
+        $this->assertNotEmpty($ctrl->actionArchive());
         $this->assertNotEmpty($ctrl->actionCategories(1));
         $this->assertNotEmpty($ctrl->actionCategory(1));
         $this->assertNotEmpty($ctrl->actionDetail(1, 'Title'));
