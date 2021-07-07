@@ -31,6 +31,7 @@ use luya\web\LinkInterface;
  * @property integer $timestamp_update
  * @property boolean $is_deleted
  * @property boolean $is_online
+ * @property boolean $is_archived
  * @property string $teaser_text
  * @property string $detailUrl Return the link to the detail url of a news item.
  * @property string $author
@@ -95,7 +96,7 @@ class Article extends NgRestModel
             [['title', 'text', 'image_list', 'file_list', 'teaser_text', 'author'], 'string'],
             [['cat_id', 'create_user_id', 'update_user_id', 'timestamp_create', 'timestamp_update'], 'integer'],
             [['cat_id'], 'exist', 'targetClass' => Cat::class, 'targetAttribute' => 'id'],
-            [['is_deleted', 'is_online'], 'boolean'],
+            [['is_deleted', 'is_online', 'is_archived'], 'boolean'],
             [['image_id', 'link'], 'safe'],
         ];
     }
@@ -115,8 +116,9 @@ class Article extends NgRestModel
             'is_online' => Module::t('article_is_online'),
             'image_list' => Module::t('article_image_list'),
             'file_list' => Module::t('article_file_list'),
-            'author' => 'Author',
-            'link' => 'Link',
+            'author' => Module::t('article_author'),
+            'link' => Module::t('article_link'),
+            'is_archived' => Module::t('article_is_archived'),
         ];
     }
     
@@ -131,6 +133,7 @@ class Article extends NgRestModel
             'text' => ['textarea', 'markdown' => true],
             'image_id' => 'image',
             'is_online'  => ['toggleStatus', 'scheduling' => true],
+            'is_archived' => ['toggleStatus', 'scheduling' => true],
             'timestamp_create' => 'datetime',
             'is_display_limit' => 'toggleStatus',
             'image_list' => 'imageArray',
@@ -174,7 +177,7 @@ class Article extends NgRestModel
     public function ngRestAttributeGroups()
     {
         return [
-            [['timestamp_create', 'is_online'], 'Time', 'collapsed'],
+            [['timestamp_create', 'is_online', 'is_archived'], 'Time', 'collapsed'],
             [['image_id', 'image_list', 'file_list'], 'Media'],
         ];
     }
@@ -186,7 +189,7 @@ class Article extends NgRestModel
     {
         return [
             [['list'], ['cat_id', 'title', 'timestamp_create', 'is_online', 'image_id']],
-            [['create', 'update'], ['cat_id', 'title', 'teaser_text', 'text', 'author', 'link', 'timestamp_create', 'is_online', 'image_id', 'image_list', 'file_list']],
+            [['create', 'update'], ['cat_id', 'title', 'teaser_text', 'text', 'author', 'link', 'timestamp_create', 'is_online', 'is_archived', 'image_id', 'image_list', 'file_list']],
             [['delete'], true],
         ];
     }
@@ -232,7 +235,7 @@ class Article extends NgRestModel
     public static function getAvailableNews($limit = false)
     {
         $q = self::find()
-            ->andWhere(['is_online' => true])
+            ->andWhere(['is_online' => true, 'is_archived' => false])
             ->orderBy('timestamp_create DESC');
         
         if ($limit) {

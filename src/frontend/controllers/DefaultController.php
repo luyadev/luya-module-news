@@ -32,7 +32,7 @@ class DefaultController extends \luya\web\Controller
     public function actionIndex()
     {
         $provider = new ActiveDataProvider([
-            'query' => Article::find()->andWhere(['is_deleted' => false, 'is_online' => true])->with(['createUser']),
+            'query' => Article::find()->andWhere(['is_deleted' => false, 'is_online' => true, 'is_archived' => false])->with(['createUser']),
             'sort' => [
                 'defaultOrder' => $this->module->articleDefaultOrder,
             ],
@@ -44,6 +44,40 @@ class DefaultController extends \luya\web\Controller
         ]);
         
         return $this->render('index', [
+            'model' => Article::class,
+            'provider' => $provider,
+        ]);
+    }
+
+    /**
+     * Get Archive overview.
+     *
+     * The archive action will return an active data provider object inside the $provider variable:
+     *
+     * ```php
+     * foreach ($provider->models as $item) {
+     *     var_dump($item);
+     * }
+     * ```
+     *
+     * @return string
+     * @since 4.0.0
+     */
+    public function actionArchive()
+    {
+        $provider = new ActiveDataProvider([
+            'query' => Article::find()->andWhere(['is_deleted' => false, 'is_online' => true, 'is_archived' => true])->with(['createUser']),
+            'sort' => [
+                'defaultOrder' => $this->module->articleDefaultOrder,
+            ],
+            'pagination' => [
+                'route' => $this->module->id,
+                'params' => ['page' => Yii::$app->request->get('page')],
+                'defaultPageSize' => $this->module->articleDefaultPageSize,
+            ],
+        ]);
+        
+        return $this->render('archive', [
             'model' => Article::class,
             'provider' => $provider,
         ]);
@@ -64,7 +98,7 @@ class DefaultController extends \luya\web\Controller
         }
         
         $provider = new ActiveDataProvider([
-            'query' => Article::find()->where(['in', 'cat_id', $ids])->andWhere(['is_deleted' => false, 'is_online' => true])->with(['createUser']),
+            'query' => Article::find()->where(['in', 'cat_id', $ids])->andWhere(['is_deleted' => false, 'is_online' => true, 'is_archived' => false])->with(['createUser']),
             'sort' => [
                 'defaultOrder' => $this->module->articleDefaultOrder,
             ],
@@ -119,7 +153,7 @@ class DefaultController extends \luya\web\Controller
         }
         
         $provider = new ActiveDataProvider([
-            'query' => $model->getArticles()->andWhere(['is_deleted' => false, 'is_online' => true])->with(['createUser']),
+            'query' => $model->getArticles()->andWhere(['is_deleted' => false, 'is_online' => true, 'is_archived' => false])->with(['createUser']),
             'sort' => [
                 'defaultOrder' => $this->module->categoryArticleDefaultOrder,
             ],

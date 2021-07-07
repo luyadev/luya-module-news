@@ -1,6 +1,10 @@
 # LUYA News Module Upgrade
 
-## from 2.0 to 3.0 ()
+## from 3.0 to 4.0 (7. July 2021)
+
++ New migrations must be applied with the `migrate` command.
+
+## from 2.0 to 3.0 (7. April 2021)
 
 + New migrations must be applied with the `migrate` command.
 
