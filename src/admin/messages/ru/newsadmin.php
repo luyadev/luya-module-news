@@ -41,4 +41,10 @@ return [
 // 3.1.0
 
     'preview' => 'Preview',
+
+// 4.0.0
+
+    'article_author' => 'Author',
+    'article_link' => 'Link',
+    'article_is_archived' => 'Archived',
 ];
