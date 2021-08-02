@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 In order to read more about upgrading and BC breaks have a look at the [UPGRADE Document](UPGRADE.md).
 
-## 4.0.0 (7. July 2021)
+## 4.0.0 (2. August 2021)
 
 + [#24](https://github.com/luyadev/luya-module-news/pull/24) New field to archive certain News Articles. A new archive action is available where developers can list the archived entries.
 
