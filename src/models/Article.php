@@ -10,10 +10,12 @@ use luya\admin\ngrest\base\NgRestModel;
 use luya\admin\traits\SoftDeleteTrait;
 use luya\admin\traits\TaggableTrait;
 use luya\admin\aws\TaggableActiveWindow;
+use luya\admin\behaviors\BlameableBehavior;
 use luya\admin\buttons\DuplicateActiveButton;
 use luya\admin\models\User;
 use luya\news\admin\aws\PreviewActiveWindow;
 use luya\web\LinkInterface;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * News Article
@@ -61,29 +63,22 @@ class Article extends NgRestModel
     }
 
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
-    public function init()
+    public function behaviors()
     {
-        parent::init();
-        $this->on(self::EVENT_BEFORE_INSERT, [$this, 'eventBeforeInsert']);
-        $this->on(self::EVENT_BEFORE_UPDATE, [$this, 'eventBeforeUpdate']);
-    }
-
-    public function eventBeforeUpdate()
-    {
-        $this->update_user_id = Yii::$app->adminuser->getId();
-        $this->timestamp_update = time();
-    }
-    
-    public function eventBeforeInsert()
-    {
-        $this->create_user_id = Yii::$app->adminuser->getId();
-        $this->update_user_id = Yii::$app->adminuser->getId();
-        $this->timestamp_update = time();
-        if (empty($this->timestamp_create)) {
-            $this->timestamp_create = time();
-        }
+        return [
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'create_user_id',
+                'updatedByAttribute' => 'update_user_id',
+            ],
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'timestamp_create',
+                'updatedAtAttribute' => 'timestamp_update'
+            ]
+        ];
     }
 
     /**
