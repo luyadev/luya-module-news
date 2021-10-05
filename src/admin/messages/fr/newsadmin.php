@@ -24,7 +24,7 @@ return [
         
 // 1.0.0
 
-    'teaser_text' => 'Text d\'accroche',
+    'teaser_text' => 'Texte d\'accroche',
 
 // 2.0.0
 
@@ -32,11 +32,11 @@ return [
 
 // 3.1.0
 
-    'preview' => 'Preview',
+    'preview' => 'Aperçu',
 
 // 4.0.0
 
-    'article_author' => 'Author',
-    'article_link' => 'Link',
-    'article_is_archived' => 'Archived',
+    'article_author' => 'Auteur',
+    'article_link' => 'Lien',
+    'article_is_archived' => 'Archivé',
 ];
