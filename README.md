@@ -64,7 +64,8 @@ With version 2.0 of news module, the admin queue is required in order to switch 
         'class' => 'luya\admin\Module',
         // ...
         'autoBootstrapQueue' => true,
-    ]
+    ],
+    //...
 ]
 ```
 
