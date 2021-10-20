@@ -33,11 +33,11 @@ return [
 
 // 3.1.0
 
-    'preview' => 'Preview',
+    'preview' => 'Amostra',
 
 // 4.0.0
 
-    'article_author' => 'Author',
+    'article_author' => 'Autor',
     'article_link' => 'Link',
-    'article_is_archived' => 'Archived',
+    'article_is_archived' => 'Arquivado',
 ];
