@@ -75,10 +75,21 @@ class Article extends NgRestModel
             ],
             [
                 'class' => TimestampBehavior::class,
-                'createdAtAttribute' => 'timestamp_create',
+                'createdAtAttribute' => false,
                 'updatedAtAttribute' => 'timestamp_update'
             ]
         ];
+    }
+
+    public function init()
+    {
+        parent::init();
+
+        $this->on(self::EVENT_BEFORE_INSERT, function() {
+            if (empty($this->timestamp_create)) {
+                $this->timestamp_create = time();
+            }
+        });
     }
 
     /**
